@@ -367,6 +367,7 @@ mongoose
         description: `Description for property ${i + 1}`,
         price: Math.floor(Math.random() * 1000000) + 50000,
         location: `Location ${i + 1}`,
+        propertySize : Math.floor(Math.random() * 1000) + 1000,
         isFavourite: false,
         imageURL: imageList[i],
       });

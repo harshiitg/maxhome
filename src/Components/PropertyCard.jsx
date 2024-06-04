@@ -5,8 +5,15 @@ import { PercentageCircle } from "../utils/PercentageCircle";
 import { FaLocationArrow } from "react-icons/fa";
 
 const PropertyCard = ({ property }) => {
-  const { price, description, location, imageURL, _id, isFavourite } = property;
-  const propertySize = 1200;
+  const {
+    price,
+    description,
+    location,
+    imageURL,
+    _id,
+    isFavourite,
+    propertySize,
+  } = property;
 
   const overviewSprite = "https://assets.nobroker.in/nob-forum/icons.svg";
   return (

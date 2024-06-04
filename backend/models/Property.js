@@ -1,5 +1,5 @@
 // models/Property.js
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const propertySchema = new mongoose.Schema({
   title: String,
@@ -7,7 +7,8 @@ const propertySchema = new mongoose.Schema({
   price: Number,
   location: String,
   imageURL: [String],
-  isFavourite : Boolean
+  isFavourite: Boolean,
+  propertySize: Number,
 });
 
-module.exports = mongoose.model('Property', propertySchema);
+module.exports = mongoose.model("Property", propertySchema);
