@@ -52,8 +52,6 @@ export class PercentageCircle extends React.Component {
     const pCircumference = (circumference * fakePercent) / 100;
     const x = circleSize / 2;
     const y = (circleSize - diameter) / 2;
-    const fontSize = circleSize / 3.73;
-    const textX = circleSize / 2 - fontSize / 1.8;
 
     const styleSheet = document.styleSheets[0];
     styleSheet.insertRule(
@@ -103,7 +101,7 @@ export class PercentageCircle extends React.Component {
             width: "100%",
             textAlign: "center",
             color: fontColor,
-            top: "18%",
+            top: "23%",
             left: "0%",
             fontSize: "13px",
             fontWeight: "700",
@@ -118,7 +116,7 @@ export class PercentageCircle extends React.Component {
             width: "100%",
             textAlign: "center",
             color: fontColor,
-            top: "49%",
+            top: "53%",
             left: "0%",
             fontSize: "10px",
           }}

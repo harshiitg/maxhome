@@ -10,7 +10,10 @@ const propertySchema = new mongoose.Schema({
   isFavourite: Boolean,
   propertySize: Number,
   latitude: Number,
-  longitude: Number
+  longitude: Number,
+  matchScore: Number,
+  furnishing: String,
+  leaseType: String
 });
 
 module.exports = mongoose.model("Property", propertySchema);

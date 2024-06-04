@@ -4,25 +4,48 @@ const Property = require("./models/Property");
 const mongoURI =
   "mongodb+srv://Cluster26341:YERVXnpoVWhm@cluster26341.w93afml.mongodb.net/realEstate?retryWrites=true&w=majority";
 
-  function generateRandomCoordinates(latitude, longitude, radius) {
-    const earthRadius = 6371; // Earth's radius in kilometers
-  
-    // Generate a random angle in radians
-    const randomAngle = Math.random() * 2 * Math.PI;
-  
-    // Calculate the random distance from the center
-    const randomDistance = Math.random() * radius;
-  
-    // Calculate the new latitude and longitude
-    const newLatitude = latitude + (randomDistance / earthRadius) * (180 / Math.PI) * Math.cos(randomAngle);
-    const newLongitude = longitude + (randomDistance / earthRadius) * (180 / Math.PI) * Math.sin(randomAngle);
-  
-    return {
-      latitude: newLatitude.toFixed(4),
-      longitude: newLongitude.toFixed(4)
-    };
-  }
+function generateRandomCoordinates(latitude, longitude, radius) {
+  const earthRadius = 6371; // Earth's radius in kilometers
 
+  // Generate a random angle in radians
+  const randomAngle = Math.random() * 2 * Math.PI;
+
+  // Calculate the random distance from the center
+  const randomDistance = Math.random() * radius;
+
+  // Calculate the new latitude and longitude
+  const newLatitude =
+    latitude +
+    (randomDistance / earthRadius) * (180 / Math.PI) * Math.cos(randomAngle);
+  const newLongitude =
+    longitude +
+    (randomDistance / earthRadius) * (180 / Math.PI) * Math.sin(randomAngle);
+
+  return {
+    latitude: newLatitude.toFixed(4),
+    longitude: newLongitude.toFixed(4),
+  };
+}
+
+function getFurnishing() {
+  const getRandomNumber = Math.random();
+  if (getRandomNumber < 0.3) {
+    return "Furnished";
+  } else if (getRandomNumber < 0.6) {
+    return "Semi-Furnished";
+  } else {
+    return "Unfurnished";
+  }
+}
+
+function getLeaseType() {
+  const getRandomNumber = Math.random();
+  if (getRandomNumber < 0.5) {
+    return "Only Families";
+  } else {
+    return "Open to all";
+  }
+}
 
 mongoose
   .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -364,20 +387,7 @@ mongoose
         "8a9f865271f33b170171f3a1ec3a1e30/8a9f865271f33b170171f3a1ec3a1e30_80344_162542_large.jpg",
         "8a9f865271f33b170171f3a1ec3a1e30/8a9f865271f33b170171f3a1ec3a1e30_59017_812351_large.jpg",
       ],
-      [
-        "8a9f91b57458e20f017459de10777664/8a9f91b57458e20f017459de10777664_9554_807483_large.jpg",
-        "8a9f91b57458e20f017459de10777664/8a9f91b57458e20f017459de10777664_67258_640562_large.jpg",
-      ],
-      [
-        "8a9f8b838fce52b1018fce8427c5180f/8a9f8b838fce52b1018fce8427c5180f_87023_857595_large.jpg",
-        "8a9f8b838fce52b1018fce8427c5180f/8a9f8b838fce52b1018fce8427c5180f_122358_909749_large.jpg",
-        "8a9f8b838fce52b1018fce8427c5180f/8a9f8b838fce52b1018fce8427c5180f_993666_139771_large.jpg",
-        "8a9f8b838fce52b1018fce8427c5180f/8a9f8b838fce52b1018fce8427c5180f_97645_182121_large.jpg",
-        "8a9f8b838fce52b1018fce8427c5180f/8a9f8b838fce52b1018fce8427c5180f_450311_683085_large.jpg",
-        "8a9f8b838fce52b1018fce8427c5180f/8a9f8b838fce52b1018fce8427c5180f_664406_447619_large.jpg",
-      ],
     ];
-    
 
     const n = imageList.length;
     const centerLatitude = 12.9716;
@@ -390,11 +400,20 @@ mongoose
         description: `Description for property ${i + 1}`,
         price: Math.floor(Math.random() * 1000000) + 50000,
         location: `Location ${i + 1}`,
-        propertySize : Math.floor(Math.random() * 1000) + 1000,
+        propertySize: Math.floor(Math.random() * 1000) + 1000,
         isFavourite: false,
         imageURL: imageList[i],
-        latitude : Number(generateRandomCoordinates(centerLatitude, centerLongitude, radius).latitude),
-        longitude : Number(generateRandomCoordinates(centerLatitude, centerLongitude, radius).longitude)
+        latitude: Number(
+          generateRandomCoordinates(centerLatitude, centerLongitude, radius)
+            .latitude
+        ),
+        longitude: Number(
+          generateRandomCoordinates(centerLatitude, centerLongitude, radius)
+            .longitude
+        ),
+        matchScore: Math.floor(Math.random() * 50) + 50,
+        furnishing : getFurnishing(),
+        leaseType : getLeaseType(),
       });
     }
 

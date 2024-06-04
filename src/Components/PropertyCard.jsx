@@ -13,6 +13,11 @@ const PropertyCard = ({ property }) => {
     _id,
     isFavourite,
     propertySize,
+    matchScore,
+    latitude,
+    longitude,
+    furnishing,
+    leaseType,
   } = property;
 
   const overviewSprite = "https://assets.nobroker.in/nob-forum/icons.svg";
@@ -30,7 +35,7 @@ const PropertyCard = ({ property }) => {
               className="address"
               onClick={() =>
                 window.open(
-                  "https://www.google.com/maps/place/Roxie/@12.9162376,77.6667136,15z/data=!4m6!3m5!1s0x3bae137cd088882f:0xcb059418e88bcebe!8m2!3d12.9151978!4d77.6658216!16s%2Fg%2F11tfn0np0n?entry=ttu"
+                  `https://maps.google.com/?q=${latitude},${longitude}`
                 )
               }
             >
@@ -39,7 +44,7 @@ const PropertyCard = ({ property }) => {
           </div>
           <div className="circle-container">
             <div className="circle">
-              <PercentageCircle circleSize={50} percent={70} />
+              <PercentageCircle circleSize={50} percent={matchScore} />
             </div>
           </div>
         </div>
@@ -58,14 +63,14 @@ const PropertyCard = ({ property }) => {
               className="icon icon-2"
               style={{ backgroundImage: `url(${overviewSprite})` }}
             ></div>
-            <div className="text">{"Furnished"}</div>
+            <div className="text">{furnishing}</div>
           </div>
           <div className="info-item">
             <div
               className="icon icon-3"
               style={{ backgroundImage: `url(${overviewSprite})` }}
             ></div>
-            <div className="text">{"Only Families"}</div>
+            <div className="text">{leaseType}</div>
           </div>
         </div>
       </div>
