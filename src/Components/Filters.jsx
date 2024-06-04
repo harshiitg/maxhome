@@ -71,7 +71,10 @@ function Filters({ setProperties }) {
           <span style={{ marginRight: "8px" }}>Filters</span>
           {showFilterModal ? <FaArrowUp /> : <FaArrowDown />}
         </button>
-        <ImCross onClick={() => applyFilters(true)} />
+        <ImCross
+          style={{ cursor: "pointer" }}
+          onClick={() => applyFilters(true)}
+        />
       </>
       {showFilterModal ? (
         <div className="container">
