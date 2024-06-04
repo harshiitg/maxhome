@@ -9,6 +9,8 @@ const propertySchema = new mongoose.Schema({
   imageURL: [String],
   isFavourite: Boolean,
   propertySize: Number,
+  latitude: Number,
+  longitude: Number
 });
 
 module.exports = mongoose.model("Property", propertySchema);

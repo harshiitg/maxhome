@@ -4,6 +4,26 @@ const Property = require("./models/Property");
 const mongoURI =
   "mongodb+srv://Cluster26341:YERVXnpoVWhm@cluster26341.w93afml.mongodb.net/realEstate?retryWrites=true&w=majority";
 
+  function generateRandomCoordinates(latitude, longitude, radius) {
+    const earthRadius = 6371; // Earth's radius in kilometers
+  
+    // Generate a random angle in radians
+    const randomAngle = Math.random() * 2 * Math.PI;
+  
+    // Calculate the random distance from the center
+    const randomDistance = Math.random() * radius;
+  
+    // Calculate the new latitude and longitude
+    const newLatitude = latitude + (randomDistance / earthRadius) * (180 / Math.PI) * Math.cos(randomAngle);
+    const newLongitude = longitude + (randomDistance / earthRadius) * (180 / Math.PI) * Math.sin(randomAngle);
+  
+    return {
+      latitude: newLatitude.toFixed(4),
+      longitude: newLongitude.toFixed(4)
+    };
+  }
+
+
 mongoose
   .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
@@ -360,6 +380,9 @@ mongoose
     
 
     const n = imageList.length;
+    const centerLatitude = 12.9716;
+    const centerLongitude = 77.5946;
+    const radius = 10; // Radius in kilometers
 
     for (let i = 0; i < n; i++) {
       properties.push({
@@ -370,6 +393,8 @@ mongoose
         propertySize : Math.floor(Math.random() * 1000) + 1000,
         isFavourite: false,
         imageURL: imageList[i],
+        latitude : Number(generateRandomCoordinates(centerLatitude, centerLongitude, radius).latitude),
+        longitude : Number(generateRandomCoordinates(centerLatitude, centerLongitude, radius).longitude)
       });
     }
 
