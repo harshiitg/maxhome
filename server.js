@@ -36,6 +36,49 @@ app.post("/api/toggleFavourite", async (req, res) => {
   }
 });
 
+// Filtering properties
+app.get('/api/filterProperties', async (req, res) => {
+  try {
+    const filters = req.query;
+    const filterCriteria = {};
+    console.log(filters)
+
+    if (filters.priceMin) filterCriteria.price = { ...filterCriteria.price, $gte: filters.priceMin };
+    if (filters.priceMax) filterCriteria.price = { ...filterCriteria.price, $lte: filters.priceMax };
+    if (filters.location) filterCriteria.location = filters.location;
+    if (filters.propertySizeMin) filterCriteria.propertySize = { ...filterCriteria.propertySize, $gte: filters.propertySizeMin };
+    if (filters.propertySizeMax) filterCriteria.propertySize = { ...filterCriteria.propertySize, $lte: filters.propertySizeMax };
+    if (filters.furnishing) filterCriteria.furnishing = filters.furnishing;
+    if (filters.leaseType) filterCriteria.leaseType = filters.leaseType;
+
+    const properties = await Property.find(filterCriteria);
+    res.json(properties);
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+// Searching properties
+app.get('/api/searchProperties', async (req, res) => {
+  try {
+    const { query } = req.query;
+    const searchCriteria = {
+      $or: [
+        { title: { $regex: query, $options: 'i' } },
+        { description: { $regex: query, $options: 'i' } },
+        { location: { $regex: query, $options: 'i' } }
+      ]
+    };
+
+    const properties = await Property.find(searchCriteria);
+    res.json(properties);
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

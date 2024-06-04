@@ -1,18 +1,122 @@
-.header{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
-    padding: 12px;
-    font-size: 16px;
-    font-weight: 600;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.image{
-    margin-top: 4px;
+.image {
+  margin-top: 4px;
 }
 
-.header-text{
-    margin-left: 8px;
-    font-size: 20px;
+.header-text {
+  margin-left: 8px;
+  font-size: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  position: absolute;
+  inset: 0px auto auto 0px;
+  margin: 0px;
+  transform: translate3d(175px, 75px, 0px);
+  z-index: 20;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+
+.filter-button {
+  background-color: rgb(242, 250, 255);
+  margin-top : 16px;
+  border: 1px solid black;
+  max-width: 150px;
+  min-width: 120px;
+  min-height: 37px;
+  overflow: hidden;
+  padding: 0px 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  margin-left: 8px;
+  border-radius: 8px;
+  margin-right: 12px;
+}
+
+.filter-button:hover {
+  border: 1px solid rgb(0, 106, 255);
+}
+
+.filter-modal {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 400px;
+  margin: 40px auto;
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.filter-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.close-button {
+  cursor: pointer;
+}
+
+.filter-content {
+  padding: 10px 20px;
+}
+
+.filter-section {
+}
+
+.filter-input-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.filter-input-group input[type="number"] {
+  width: 40%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filter-input-group input[type="number"]:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-footer {
+  text-align: center;
+}
+
+.apply-button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.apply-button:hover {
+  background-color: #3e8e41;
 }
