@@ -15,7 +15,7 @@ const PropertyPage = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          "http://localhost:5001/api/properties"
+          `${window.location.origin}/api/properties`
         );
         setProperties(response.data);
       } catch (error) {
@@ -31,7 +31,7 @@ const PropertyPage = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:5001/api/searchProperties?query=${searchQuery}`
+        `${window.location.origin}/api/searchProperties?query=${searchQuery}`
       );
       setProperties(response.data);
     } catch (error) {

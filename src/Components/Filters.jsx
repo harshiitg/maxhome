@@ -39,7 +39,7 @@ function Filters({ setProperties }) {
 
     try {
       const response = await fetch(
-        `http://localhost:5001/api/filterProperties?${filterCriteria}`
+        `${window.location.origin}/api/filterProperties?${filterCriteria}`
       );
       const data = await response.json();
       // Handle the filtered properties data

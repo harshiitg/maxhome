@@ -9,7 +9,7 @@ const ImageCarousel = ({ images, id, favourite }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isFavourite, setIsFavourite] = useState(favourite);
   const [isNotificationVisible, setIsNotificationVisible] = useState(false);
-  const apiBaseUrl = "http://localhost:5001";
+  const apiBaseUrl = window.location.origin
 
   const dotsPerPage = 5;
 
