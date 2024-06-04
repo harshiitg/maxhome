@@ -17,7 +17,7 @@
 
 @media (min-width: 768px) {
     .property-card:hover {
-      transform: scale(1.08);
+      transform: scale(1.04);
       box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
     }
   }

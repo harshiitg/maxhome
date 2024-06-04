@@ -1,5 +1,5 @@
 export const loadImage = (src, alt, height, width) => {
   return (
-    <img src={src} height={height} alt={alt} width={width} loading="lazy" />
+    <img src={src} height={height} alt={alt} width={width} fetchPriority="high" />
   );
 };
