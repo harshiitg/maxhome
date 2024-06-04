@@ -1,10 +1,11 @@
 import React from 'react';
-import PropertyList from './Components/PropertyList';
+import PropertyPage from './Components/PropertyPage';
+
 
 const App = () => {
   return (
     <div className="App">
-      <PropertyList />
+      <PropertyPage />
     </div>
   );
 };

@@ -1,0 +1,278 @@
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.property-card {
+  max-width: 500px;
+  margin: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+    .property-card:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.overlay:hover {
+  opacity: 1;
+}
+
+.showcase-button,
+.heart-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.image-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: white;
+}
+
+.property-info {
+  padding: 10px;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.details {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.address {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+.realtor {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.more-info-button {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .property-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 400px) {
+  .property-card {
+    margin: 12px;
+  }
+}
+
+.heart-style {
+  color: #b9b5b5;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 20px;
+  width: 20px;
+}
+
+.heart-style.active {
+  color: red;
+}
+
+.image-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+.image-container img {
+  width: 100%;
+}
+
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prev-button {
+  left: 0;
+}
+
+.next-button {
+  right: 0;
+}
+
+.prev-button::before,
+.next-button::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.prev-button::before {
+  border-width: 6px 8px 6px 0;
+  border-color: transparent rgba(0, 0, 0, 0.8) transparent transparent;
+  margin-right: 4px;
+}
+
+.next-button::after {
+  border-width: 6px 0 6px 8px;
+  border-color: transparent transparent transparent rgba(0, 0, 0, 0.8);
+  margin-left: 4px;
+}
+
+.image-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #fff;
+  scale: 2;
+}
+
+.circle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+}
+
+.circle {
+  height: 50px;
+  width: 50px;
+}
+
+.info-container {
+  display: flex;
+  justify-content: space-around;
+  height: 28px;
+  margin-top: 4px;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  height: 12px;
+  width: 12px;
+  background-repeat: no-repeat;
+}
+
+.icon-1 {
+  background-position: -11px -11px;
+}
+
+.icon-2 {
+  background-position: -34px -11px;
+}
+
+.icon-3 {
+  background-position: -57px -11px;
+}
+
+.text {
+  margin-left: 8px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #78849e;
+}
+
+.property-details-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.property-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 65%;
+}
