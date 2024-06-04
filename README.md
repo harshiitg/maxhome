@@ -6,6 +6,7 @@ Basic Property App in React + MongoDB + Express
 
 In the project directory, you can run:
 
+### `node mockData.js`
 ### `npm start`
 
 
