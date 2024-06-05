@@ -27,23 +27,23 @@ const PropertyPage = () => {
     fetchProperties();
   }, []);
 
-  const handleSearch = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(
-        `http://localhost:5001/api/searchProperties?query=${searchQuery}`
-      );
-      setProperties(response.data);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const handleSearch = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:5001/api/searchProperties?query=${searchQuery}`
+  //     );
+  //     setProperties(response.data);
+  //   } catch (error) {
+  //     setError(error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
-  const handleInputChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
+  // const handleInputChange = (event) => {
+  //   setSearchQuery(event.target.value);
+  // };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
