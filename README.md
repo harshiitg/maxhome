@@ -1,6 +1,6 @@
 # Project Description
 
-Basic Property App in React + MongoDB + Express
+Basic Property App in React + MongoDB + Express . Hosted on vercel
 
 ## Available Scripts
 
