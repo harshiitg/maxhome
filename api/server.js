@@ -4,47 +4,47 @@ const cors = require('cors');
 const Property = require('./models/Property');
 
 const app = express();
+const router = express.Router();
 
 app.use(cors());
-app.use(express.json()); // Add this line to parse JSON bodies
+app.use(express.json());
 
 const mongoURI = 'mongodb+srv://Cluster26341:YERVXnpoVWhm@cluster26341.w93afml.mongodb.net/realEstate?retryWrites=true&w=majority';
-
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-app.get('/' , (req, res) => {
+// Define routes on the router
+router.get('/', (req, res) => {
   res.send('Hello World!');
-})
-app.get('/api/properties', (req, res) => {
+});
+
+router.get('/api/properties', (req, res) => {
   Property.find().then(properties => res.json(properties));
 });
 
-app.post("/api/toggleFavourite", async (req, res) => {
+router.post('/api/toggleFavourite', async (req, res) => {
   try {
     const propertyId = req.body.propertyId; 
     const property = await Property.findById(propertyId);
     if (!property) {
-      return res.status(404).json({ message: "Property not found" });
+      return res.status(404).json({ message: 'Property not found' });
     }
 
     property.isFavourite = !property.isFavourite;
     await property.save();
 
-    res.json({ message: "Property updated", property });
+    res.json({ message: 'Property updated', property });
   } catch (err) {
-    console.error("Error:", err);
-    res.status(500).json({ message: "Internal Server Error" });
+    console.error('Error:', err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
-// Filtering properties
-app.get('/api/filterProperties', async (req, res) => {
+router.get('/api/filterProperties', async (req, res) => {
   try {
     const filters = req.query;
     const filterCriteria = {};
-    console.log(filters)
 
     if (filters.priceMin) filterCriteria.price = { ...filterCriteria.price, $gte: filters.priceMin };
     if (filters.priceMax) filterCriteria.price = { ...filterCriteria.price, $lte: filters.priceMax };
@@ -57,13 +57,12 @@ app.get('/api/filterProperties', async (req, res) => {
     const properties = await Property.find(filterCriteria);
     res.json(properties);
   } catch (err) {
-    console.error("Error:", err);
-    res.status(500).json({ message: "Internal Server Error" });
+    console.error('Error:', err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
-// Searching properties
-app.get('/api/searchProperties', async (req, res) => {
+router.get('/api/searchProperties', async (req, res) => {
   try {
     const { query } = req.query;
     const searchCriteria = {
@@ -77,12 +76,13 @@ app.get('/api/searchProperties', async (req, res) => {
     const properties = await Property.find(searchCriteria);
     res.json(properties);
   } catch (err) {
-    console.error("Error:", err);
-    res.status(500).json({ message: "Internal Server Error" });
+    console.error('Error:', err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Export the app to be used as a serverless function
+module.exports = (req, res) => {
+  app.use('/api', router);
+  app(req, res);
+};
